@@ -34,7 +34,7 @@ jobs:
                 GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
                 INPUT_STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
                 INPUT_STEAM_ID: ${{ vars.STEAM_ID }}
-                INPUT_STEAM_CUSTOM_ID: ${{ vars.STEAM_CUSTOM_ID }}
+                INPUT_STEAM_CUSTOM_ID: ${{ vars.CUSTOM_ID }}
                 INPUT_WORKSHOP_STATS: True
                 INPUT_LOG_SCALE: True
                 GITHUB_REPOSITORY: ${{ github.repository }}
