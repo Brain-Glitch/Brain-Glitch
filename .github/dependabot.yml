@@ -1,0 +1,64 @@
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+# pipdeptree | Select-String -Pattern '^\w' | ForEach-Object { $_.Line.Split('==')[0] } > requirements.txt
+# pipdeptree | Select-String -Pattern '^\w' | ForEach-Object { $_.Line } > requirements.txt
+# pip install --upgrade -r requirements.txt
+
+version: 2
+updates:
+    - package-ecosystem: "pip"
+      directory: "/"
+      schedule:
+          interval: "weekly"
+      commit-message:
+          prefix: "chore"
+          include: "scope"
+      labels:
+          - dependencies
+          - dependabot
+          - python
+      rebase-strategy: auto
+      versioning-strategy: "increase-if-necessary"
+      open-pull-requests-limit: 10
+      groups:
+          python-packages:
+              patterns:
+                  - "*"
+
+    - package-ecosystem: "github-actions"
+      directory: "/"
+      schedule:
+          interval: "weekly"
+      commit-message:
+          prefix: "ci"
+      labels:
+          - dependencies
+          - dependabot
+          - github_actions
+      rebase-strategy: auto
+      open-pull-requests-limit: 10
+      groups:
+          github-actions:
+              patterns:
+                  - "*"
+
+    - package-ecosystem: "docker"
+      directory: "/"
+      schedule:
+          interval: "weekly"
+      commit-message:
+          prefix: "build"
+          include: "scope"
+      labels:
+          - dependencies
+          - dependabot
+          - docker
+      rebase-strategy: auto
+      ignore:
+          - dependency-name: "playwright/python"
+            versions:
+                - "1.49.1"
+      open-pull-requests-limit: 10
+      groups:
+          docker:
+              patterns:
+                  - "*"
