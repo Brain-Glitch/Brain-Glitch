@@ -24,7 +24,7 @@ jobs:
             security-events: write
         steps:
           - name: Checkout Repo
-            uses: actions/checkout@v4
+            uses: actions/checkout@v5
 
           - name: Initialize CodeQL
             uses: github/codeql-action/init@v3
@@ -52,7 +52,7 @@ jobs:
                 private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
           - name: Checkout Code
-            uses: actions/checkout@v4
+            uses: actions/checkout@v5
             with:
                 token: ${{ steps.app-token.outputs.token }}
 
