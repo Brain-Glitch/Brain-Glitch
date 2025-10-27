@@ -24,20 +24,20 @@ jobs:
             security-events: write
         steps:
           - name: Checkout Repo
-            uses: actions/checkout@v4
+            uses: actions/checkout@v5
 
           - name: Initialize CodeQL
-            uses: github/codeql-action/init@v3
+            uses: github/codeql-action/init@v4
             with:
                 languages: python
                 config-file: ./.github/workflows/codeql.yml
                 queries: +security-and-quality
 
           - name: Autobuild
-            uses: github/codeql-action/autobuild@v3
+            uses: github/codeql-action/autobuild@v4
 
           - name: Perform CodeQL Analysis
-            uses: github/codeql-action/analyze@v3
+            uses: github/codeql-action/analyze@v4
 
     pylint:
         name: Pylint
@@ -52,12 +52,12 @@ jobs:
                 private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
           - name: Checkout Code
-            uses: actions/checkout@v4
+            uses: actions/checkout@v5
             with:
                 token: ${{ steps.app-token.outputs.token }}
 
           - name: Set up Python
-            uses: actions/setup-python@v5
+            uses: actions/setup-python@v6
             with:
                 python-version: "3.x"
                 cache: "pip"
